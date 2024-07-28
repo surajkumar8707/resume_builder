@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Project Name : ADMIN PANEL
+# Project Name : RESUME BUILDER
 
 
 ## Getting Started
@@ -26,18 +26,6 @@ Before running this project, make sure you follow these steps:
 
 4. **Run Database Migrations and Seeders:** Execute the following commands to migrate the database and seed it with initial data:
 - php artisan migrate then php artisan migrate:fresh
-
-## Default Accounts
-
-After running the database migrations and seeders, you can use the following default accounts to log in:
-
-- **Customer:**
-- Email: customer@gmail.com
-- Password: password
-
-- **Admin:**
-- Email: admin@gmail.com
-- Password: password
 
 ## Usage
 
