@@ -170,7 +170,7 @@ class FrontController extends Controller
 
                 File::copy($sPath, $dPath);
 
-                $resume->photo = $newImageName;
+                $resume->photo = '/assets/resume_images/'.$newImageName;
                 $resume->save();
             }
 
