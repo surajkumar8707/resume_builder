@@ -39,6 +39,7 @@
                                 <th>S.no</th>
                                 <th>User Detail</th>
                                 <th>Resume Detail</th>
+                                <th>Resume User Image</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -58,6 +59,11 @@
                                         Email: {{ $resume->email }}<br>
                                         Phone: {{ $resume->phone }}<br>
                                         Address: {{ $resume->address }}
+                                    </td>
+                                    <td>
+                                        @if($resume->photo)
+                                            <img class="img img-thumbnail rounded w-25" src="{{ public_asset($resume->photo) }}" alt="">
+                                        @endif
                                     </td>
                                     <td>
                                         <button url="{{ url('resumes.show', $resume->id) }}" class="btn btn-sm btn-outline-primary" role="button">View</button>
