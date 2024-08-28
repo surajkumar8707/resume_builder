@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a href="{{ route('admin.dashboard') }}" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -45,7 +45,7 @@
                     </g>
                 </svg>
             </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">Resume</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -61,6 +61,30 @@
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div class="text-truncate" data-i18n="Form Layouts">Resumes</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.resumes.all') }}" class="menu-link">
+                        <div class="text-truncate" data-i18n="All Resumes">All Resumes</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.resumes.authorized') }}" class="menu-link">
+                        <div class="text-truncate" data-i18n="Authrized Users">Authrized Users</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.resumes.unauthorized') }}" class="menu-link">
+                        <div class="text-truncate" data-i18n="Authrized Users">UnAuthrized Users</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         <li

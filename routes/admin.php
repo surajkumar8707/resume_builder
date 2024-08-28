@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\HomePageCarouselController;
+use App\Http\Controllers\Admin\ResumesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,13 @@ Route::middleware('role:admin')->group(function () {
 
     Route::get('/social-media', [AdminController::class, 'socialMedia'])->name('social.media');
     Route::post('/social-media-update/{id}', [AdminController::class, 'socialMediaUpdate'])->name('social.media.update');
+
+    // Resume
+    Route::group(['prefix' => 'resumes', 'as' => 'resumes.'], function () {
+        Route::get('/all', [ResumesController::class, 'all'])->name('all');
+        Route::get('/authorized', [ResumesController::class, 'authorized'])->name('authorized');
+        Route::get('/unauthorized', [ResumesController::class, 'unauthorized'])->name('unauthorized');
+    });
 
     Route::resource('home-page-carousel', HomePageCarouselController::class);
     Route::post('/change-status', [HomePageCarouselController::class, 'changeStatus'])->name('change.status');
