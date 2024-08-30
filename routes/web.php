@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('front.index');
+    return redirect()->route('front.create.cv');
 });
 
 Route::group(['prefix' => '/', 'as' => 'front.'], function () {
-    Route::get('/', [FrontController::class, 'index'])->name('index');
+    // Route::get('/', [FrontController::class, 'index'])->name('index');
+    Route::get('/', [FrontController::class, 'createCV'])->name('index');
     Route::get('/create-cv', [FrontController::class, 'createCV'])->name('create.cv');
     Route::get('/{id}/export-cv', [FrontController::class, 'exportCv'])->name('export.cv');
     Route::post('/submit-cv', [FrontController::class, 'submitCV'])->name('submit.cv');
