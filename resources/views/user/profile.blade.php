@@ -1,5 +1,5 @@
 @extends('user.layout.app')
-
+@section('page_title', 'Profile')
 @section('content')
     <div class="page-header min-height-300 border-radius-xl mt-4"
         style="background-image: url('public/assets/user/img/curved-images/curved0.jpg'); background-position-y: 50%;">
@@ -117,6 +117,24 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="col-md-4 w-100 my-2">
+                            <br>
+                            <div class="image-upload-success-message text-success" style="display: none;"></div>
+                            <div class="image-upload-error-message text-danger" style="display: none;"></div>
+                            <div class="form-group w-100">
+                                <label for="image">Upload Image</label>
+                                <div id="image" class="dropzone dz-clickable w-100">
+                                    <div class="dz-message needsclick">
+                                        <br>Drop profile image here or click to upload.<br><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="image_id" id="image_id" value="">
+                    </div>
+
+                    <div class="form-group">
                         <button type="submit" class="btn btn-outline-primary">Updat Profile</button>
                         {{-- <button type="reset" class="btn btn-secondary">Reset</button> --}}
 
@@ -126,3 +144,55 @@
         </div>
     </div>
 @endsection
+@push('styles')
+    <link rel="stylesheet" href="{{ public_asset('assets/front/plugins/dropzone/min/dropzone.min.css') }}">
+    <style>
+        .dropzone {
+            border: 2px dashed #0087F7;
+            border-radius: 5px;
+            background: white;
+            padding: 5px;
+            margin-top: 5px;
+        }
+
+        .dz-message {
+            text-align: center;
+            font-size: 25px;
+        }
+    </style>
+@endpush
+
+@push('scripts')
+    <script src="{{ public_asset('assets/front/plugins/dropzone/min/dropzone.min.js') }}"></script>
+    <script>
+        Dropzone.autoDiscover = false;
+        const dropzone = $("#image").dropzone({
+            init: function() {
+                this.on('addedfile', function(file) {
+                    if (this.files.length > 1) {
+                        this.removeFile(this.files[0]);
+                    }
+                });
+            },
+            url: "{{ route('front.temp.image.create') }}",
+            maxFiles: 1,
+            paramName: 'image',
+            addRemoveLinks: true,
+            acceptedFiles: "image/jpeg,image/png,image/gif",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(file, response) {
+                console.log(response)
+                if (response.status == 'success') {
+                    $("#image_id").val(response.data.id);
+                    $('.image-upload-success-message').html(response.message).show();
+                    $('.image-upload-error-message').hide().html("");
+                } else {
+                    $('.image-upload-error-message').html(response.message).show();
+                    $('.image-upload-success-message').hide().html("");
+                }
+            }
+        });
+    </script>
+@endpush

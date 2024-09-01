@@ -1,5 +1,5 @@
 @extends('user.layout.app')
-
+@section('page_title', 'My Resume')
 @section('content')
     <div class="page-header min-height-300 border-radius-xl mt-4"
         style="background-image: url('public/assets/user/img/curved-images/curved0.jpg'); background-position-y: 50%;">

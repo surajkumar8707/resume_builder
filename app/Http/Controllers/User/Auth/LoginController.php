@@ -77,11 +77,23 @@ class LoginController extends Controller
         }
     }
 
-    public function userLogout()
+    public function userLogout(Request $request)
     {
         try {
+            // Log out the user
+            Auth::logout();
+
+            // Invalidate the user session
+            $request->session()->invalidate();
+
+            // Regenerate the CSRF token
+            $request->session()->regenerateToken();
+
+            // Redirect the user to the home page or login page
+            return redirect('/')->with('status', 'Successfully logged out.');
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // Handle any exceptions that occur during logout
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 }

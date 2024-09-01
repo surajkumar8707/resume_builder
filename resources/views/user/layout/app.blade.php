@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="apple-touch-icon" sizes="76x76" href="{{ public_asset('assets/user/img/apple-icon.png') }}" />
     <link rel="icon" type="image/png" href="{{ public_asset('assets/user/img/favicon.png') }}" />
+    <meta name="_token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Soft UI Dashboard by Creative Tim</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -33,22 +35,20 @@
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             @yield('content')
-            <footer class="footer pt-3">
+            <footer class="footer py-3" style="position: fixed;bottom: 0px;">
                 <div class="container-fluid">
                     <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 mb-lg-0 mb-4">
+                        <div class="col-12 mb-lg-0 mb-4">
                             <div class="copyright text-center text-sm text-muted text-lg-start">
                                 ©
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
                                 , made with <i class="fa fa-heart"></i> by
-                                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
-                                    Tim</a>
-                                for a better web.
+                                <a href="javascript:;" class="font-weight-bold">Suraj Kumar</a>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        {{-- <div class="col-lg-6">
                             <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                                 <li class="nav-item">
                                     <a href="https://www.creative-tim.com" class="nav-link text-muted"
@@ -68,7 +68,7 @@
                                         target="_blank">License</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </footer>
@@ -140,8 +140,7 @@
                         onclick="navbarFixed(this)" />
                 </div>
                 <hr class="horizontal dark my-sm-4" />
-                <a class="btn bg-gradient-dark w-100"
-                    href="https://www.creative-tim.com/product/soft-ui-dashboard">Free
+                <a class="btn bg-gradient-dark w-100" href="https://www.creative-tim.com/product/soft-ui-dashboard">Free
                     Download</a>
                 <a class="btn btn-outline-dark w-100"
                     href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard">View

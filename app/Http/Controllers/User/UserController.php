@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Resume;
+use App\Models\TempImage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\{Auth, Hash, File};
 
 class UserController extends Controller
 {
     public function dashboard()
     {
         try {
-            return view('user.dashboard');
+            $user = Auth::user();
+            $last_five_resumes = $user->resumes()->orderBy('id', 'DESC')->get()->take(5);
+            $this_month = $user->resumes()->whereMonth('created_at', date('m'))->count();
+            return view('user.dashboard', compact('user', 'last_five_resumes', 'this_month'));
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
@@ -42,6 +46,21 @@ class UserController extends Controller
             'address' => 'nullable',
         ]);
         try {
+            if (!empty($request->image_id)) {
+                $tempImage = TempImage::find($request->image_id);
+                $extArray = explode('.', $tempImage->name);
+                $ext = last($extArray);
+
+                $newImageName = 'user_' . $user->id . '_' . time() . '.' . $ext;
+
+                $sPath = public_path() . '/temp/' . $tempImage->name;
+                $dPath = public_path() . '/assets/user/img/profile_image/' . $newImageName;
+
+                File::copy($sPath, $dPath);
+
+                $userValidate['image'] = 'assets/user/img/profile_image/' . $newImageName;
+                // $resume->save();
+            }
             // dd($request->all(), $userValidate);
             $result = $user->update($userValidate);
             return redirect()->back()->with('success', 'Profile updated successfully');

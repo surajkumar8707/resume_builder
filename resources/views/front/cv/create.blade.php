@@ -68,7 +68,8 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#professional-summary">Professional
                         Summary</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('front.index') }}">Home</a>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('user.login.form') }}">Login</a>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger"
+                        href="{{ route('user.login.form') }}">Login</a>
                 </li>
             </ul>
         </div>

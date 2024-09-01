@@ -139,8 +139,8 @@ class ContactSeeder extends Seeder
             ],
         ];
 
-        foreach ($contacts as $contact) {
-            Contact::create($contact);
-        }
+        // foreach ($contacts as $contact) {
+        //     Contact::create($contact);
+        // }
     }
 }

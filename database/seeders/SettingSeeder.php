@@ -18,11 +18,11 @@ class SettingSeeder extends Seeder
 
         // Seed new data
         Setting::create([
-            'app_name' => 'App Name',
-            'email' => 'admin@gmail.com',
+            'app_name' => 'Resume Builder',
+            'email' => 'sk012364@gmail.com',
             'whatsapp' => '+91 8707633860',
             'contact' => '+91 8707633860',
-            'address' => 'This is Address',
+            'address' => 'SS 222, Sector-D Jankipuram Lucknow',
             'header_image' => "assets/front/images/header/header.jpg",
             'is_fresh' => 1,
         ]);
